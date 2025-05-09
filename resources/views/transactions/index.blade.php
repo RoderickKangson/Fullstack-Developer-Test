@@ -24,7 +24,6 @@
                     <table class="table table-hover table-striped mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>ID</th>
                                 <th>Product ID</th>
                                 <th>Product Name</th>
                                 <th>Amount</th>
