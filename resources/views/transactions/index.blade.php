@@ -10,6 +10,10 @@
 <div class="container py-5">
     <h1 class="mb-4 text-center">Transaction History</h1>
 
+    <div class="mb-3 text-end">
+        <a href="{{ url('/transaction/create') }}" class="btn btn-primary">Add Transaction</a>
+    </div>
+
     @foreach($transactions as $month => $items)
         <div class="card mb-4 shadow-sm">
             <div class="card-header bg-dark text-white">
@@ -20,19 +24,20 @@
                     <table class="table table-hover table-striped mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>Customer ID</th>
+                                <th>ID</th>
                                 <th>Product ID</th>
                                 <th>Product Name</th>
                                 <th>Amount</th>
                                 <th>Customer</th>
                                 <th>Status</th>
                                 <th>Transaction Date</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($items as $transaction)
                                 <tr>
-                                    <td>{{ $transaction->ID }}</td>
+                                    <td>{{ $transaction->id }}</td>
                                     <td>{{ $transaction->productID }}</td>
                                     <td>{{ $transaction->productName }}</td>
                                     <td>${{ number_format($transaction->amount, 2) }}</td>
@@ -47,6 +52,9 @@
                                         @endif
                                     </td>
                                     <td>{{ \Carbon\Carbon::parse($transaction->transactionDate)->format('Y-m-d H:i') }}</td>
+                                    <td>
+                                        <a href="{{ url("/transaction/$transaction->id") }}" class="btn btn-sm btn-warning">Edit</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -55,7 +63,6 @@
             </div>
         </div>
     @endforeach
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

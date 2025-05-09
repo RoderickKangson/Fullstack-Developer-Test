@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransactionController;
 
-
-Route::get('/', [TransactionController::class, 'index']);
-Route::get('/transaction/{id}', [TransactionController::class, 'show']);
-Route::get('/transaction/create', [TransactionController::class, 'create']);
-Route::post('/transaction', [TransactionController::class, 'store']);
-Route::get('/transaction/{id}/edit', [TransactionController::class, 'edit']);
-Route::put('/transaction/{id}', [TransactionController::class, 'update']);
+Route::get('/', [TransactionController::class, 'index'])->name('transactions.index');
+Route::prefix('transaction')->name('transactions.')->group(function () {
+    Route::get('/create', [TransactionController::class, 'create'])->name('create');
+    Route::post('/', [TransactionController::class, 'store'])->name('store');
+    Route::post('/{transaction}/edit', [TransactionController::class, 'edit'])->name('edit');
+});

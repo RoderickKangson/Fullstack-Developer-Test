@@ -9,9 +9,10 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $table = 'create_transactions_table'; // ✅ match your migration
+    protected $table = 'create_transactions_table';
 
     protected $fillable = [
+        'ID',
         'productID',
         'productName',
         'amount',
@@ -21,4 +22,5 @@ class Transaction extends Model
         'createBy',
         'createOn'
     ];
+
 }
